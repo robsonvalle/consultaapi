@@ -1,0 +1,85 @@
+<form class="example-container" [formGroup]="lancamentoForm" (ngSubmit)="addLancamento(lancamentoForm.value)">
+    <div class="form-row align-items-center">
+      <!-- <div class="col-sm-1 my-1">
+        <label class="sr-only"  for="inlineFormInputGroupLancamento">Numpedido </label>
+        <div class="input-group">
+            <input type="text" class="form-control" id="Idnumpedido" name="numpedido" formControlName="numpedido" readonly="readonly">
+        </div>
+      </div> -->
+      <div class="col-sm-2 my-1">
+            <label class="sr-only" for="inlineFormInputGroupLancamento">Nomecliente</label>
+            <div class="input-group">
+              <input type="text" class="form-control" id="idnomecliente" name="nomecliente" placeholder="Nome do Cliente" formControlName="nomecliente">
+        </div>
+      </div>  
+      <div class="col-sm-3 my-1">
+        <div class="input-group">
+          <select formControlName="tipovenda" class="form-control" id="selecttipovenda">
+            <option value="dinheiro">dinheiro</option>
+            <option value="rede">cartao rede</option>
+            <option value="pagseguro">cartao pagseguro</option>
+          </select>
+      </div>
+      </div>  
+
+      <div class="col-sm-3 my-1">
+        <label class="sr-only" for="inlineFormInputGroupLancamento">Valor</label>
+        <div class="input-group">
+          <input type="text" mask="separado" thousandSeparator="." class="form-control" id="inputLacamentoValor" name="valor" placeholder="Valor  do Pedido" formControlName="valor" autofocus>
+        </div>
+      </div>
+      <div class="col-auto my-1">
+        <button id="BtnAdicionar" type="submit" [disabled]="!lancamentoForm.valid"    class="btn btn-primary">Adicionar</button>
+      </div>
+      <div class="col-sm-3 my-1">
+        <label class="sr-only" for="inlineFormInputGroupLancamento">Soma</label>
+        <div class="input-group ">
+        <mat-card >
+          {{total | currency: 'R$ '}} 
+        </mat-card>
+        </div>
+      </div>
+      <script>
+        var input = document.getElementById("inputLacamentoValor");
+        input.addEventListener("keyup", function(event) {
+          if (event.keyCode === 13) {
+           event.preventDefault();
+           document.getElementById("BtnAdicionar").click();
+          }
+        });
+        </script>
+    </div>
+  </form>
+
+  <table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Nome</th>
+            <th scope="col">Nº Pedido</th>
+            <th scope="col">Tipo Venda</th>
+            <th scope="col">Valor</th>
+            <th scope="col">Data</th>
+        </tr>
+    </thead>
+    <tbody *ngFor="let item of dataSource | paginate: { itemsPerPage: 10, currentPage: paginaAtual };  let i = index">
+        <tr>
+            <td>{{item.nomecliente}}</td>
+            <td>{{item.numpedido}}</td>
+            <td>{{item.tipovenda}}</td>
+            <td>{{item.valor | currency: 'BRL'}}</td>
+            <td>
+                {{item.data | date: 'dd/MM/yyyy HH:mm' }}
+            </td>
+            <button routerLink="/lancamento-detalhe/{{item.numpedido}}" routerLinkActive="active">Detalhe da venda> </button>
+        </tr>
+        
+    </tbody>
+</table>
+<div style="float: right;">
+    <pagination-controls
+        (pageChange)="paginaAtual = $event"
+        previousLabel="Anterior"
+        nextLabel="Próximo"
+    ></pagination-controls>
+
+</div>

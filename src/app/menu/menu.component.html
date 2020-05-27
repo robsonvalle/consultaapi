@@ -1,0 +1,50 @@
+<!-- <mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport="true"
+      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="(isHandset$ | async) ? 'over' : 'side'"
+      [opened]="!(isHandset$ | async)">
+    <mat-toolbar>Menu</mat-toolbar>
+    <mat-nav-list>
+      <a mat-list-item routerLink="/lancamentos" routerLinkActive="active">Lancamentos</a>
+      <a mat-list-item routerLink="/lancamento-novo" routerLinkActive="active">Novo Lancamento</a>
+    </mat-nav-list>
+  </mat-sidenav> -->
+  <!-- <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <span>lista-crud-app</span>
+    </mat-toolbar>
+    <div class="container">
+    </div>
+  </mat-sidenav-content> -->
+
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Vendas
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" routerLink="/lancamento-novo" routerLinkActive="active">Novo Lancamento</a>
+            <a class="dropdown-item" routerLink="/lancamentos" routerLinkActive="active">Lancamentos</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" routerLink="/lancamento-resumo" routerLinkActive="active">Resulmo de Venda</a>
+            <a class="dropdown-item" routerLink="/lancamento-detalhe" routerLinkActive="active">Detalhe da venda</a>
+          </div>
+      </ul>
+    </div>
+  </nav>
+  <router-outlet></router-outlet>
+<!-- </mat-sidenav-container> -->

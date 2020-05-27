@@ -1,0 +1,25 @@
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Valor</th>
+            <th scope="col">Mes</th>
+        </tr>
+    </thead>
+    <tbody *ngFor="let item of dataSource |paginate: { itemsPerPage: 10, currentPage: paginaAtual };  let i = index">
+        <tr>
+            
+            <td>{{item.valor | currency: 'BRL'}}</td>
+            <td>
+                {{item.mes}}
+            </td>
+        </tr>
+    </tbody>
+</table>
+<div style="float: right;">
+    <pagination-controls
+        (pageChange)="paginaAtual = $event"
+        previousLabel="Anterior"
+        nextLabel="Próximo"
+    ></pagination-controls>
+
+</div>
